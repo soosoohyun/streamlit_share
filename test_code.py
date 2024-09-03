@@ -5,8 +5,14 @@ import plotly.graph_objects as go
 
 st.title('데이터 대시보드')
 
-# 엑셀 파일 경로
-excel_file = 'C:/Users/soohyun/Desktop/data.xlsx'  # 파일 경로를 정확하게 지정하세요.
+
+uploaded_file = st.file_uploader("Choose an Excel file", type="xlsx")
+if uploaded_file is not None:
+    data = pd.read_excel(uploaded_file)
+    st.write(data)
+else:
+    st.error("Please upload an Excel file.")
+
 
 # 데이터 로드 함수 (캐시 적용)
 @st.cache_data
